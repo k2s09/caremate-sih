@@ -5,6 +5,7 @@ import "../../index.css";
 function PricingPlans() {
   return (
     <div>
+      <Header />
       <div className="w-full bg-[#FFD1DC] font-bold text-5xl text-[#252B61] text-center p-5">
         Caremate +
       </div>
