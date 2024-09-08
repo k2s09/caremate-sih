@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import Footer from "../../components/Footer";
-import Header from "../../components/Header";
+import React from "react";
+
 import "../../index.css";
 
 function PricingPlans() {
@@ -148,24 +147,24 @@ function PricingPlans() {
           <div className="flex ">
             <ul className="flex flex-col justify-center items-center gap-3">
               <li>
-                <a href="#" className="hover:text-gray-400">
+                <p className="hover:text-gray-400">
                   Facebook
-                </a>
+                </p>
               </li>
               <li>
-                <a href="#" className="hover:text-gray-400">
+                <p className="hover:text-gray-400">
                   Twitter
-                </a>
+                </p>
               </li>
               <li>
-                <a href="#" className="hover:text-gray-400">
+                <p className="hover:text-gray-400">
                   Instagram
-                </a>
+                </p>
               </li>
               <li>
-                <a href="#" className="hover:text-gray-400">
+                <p className="hover:text-gray-400">
                   LinkedIn
-                </a>
+                </p>
               </li>
             </ul>
           </div>
