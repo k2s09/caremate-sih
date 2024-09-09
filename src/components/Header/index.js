@@ -35,10 +35,7 @@ const Header = () => {
               <Link to="/" className="text-[#252b61] hover:bg-[#B3BEF2] hover:font-bold rounded-lg  px-2 py-2">ML Predictor</Link>
             </li>
             
-            <li>
-              <Link to="/caremateplus" className="text-[#252b61] hover:bg-[#B3BEF2] hover:font-bold hover:font-bold rounded-lg  px-2 py-2 ">Subscription Plans</Link>
-            </li>
-            
+           
             
             
             <li>

@@ -10,19 +10,34 @@ function Home() {
   return (
     <div className="">
       <Header />
-      <div className="w-full bg-[#252b61] min-h-[200px] flex flex-col items-center justify-center text-center p-5">
+      <div className="w-full bg-[#252b61] min-h-[200px] flex flex-col items-center justify-center text-center p-3">
   <p className="text-[#b3ebf2] font-extrabold text-8xl">Caremate</p>
   <br />
   <div className="flex flex-row gap-4 w-full max-w-md">
-    <button className="w-full h-24 text-2xl p-5 bg-[#f0da69] font-bold text-[#252b61] rounded-lg">
+  <div className="flex-1 flex">
+    <Link to="/createhospitals">
+    <button className="flex-1 h-28 text-2xl p-3 bg-[#f0da69] font-bold text-[#252b61] rounded-lg">
       Create Hospital
     </button>
-    <Link to="/queuemodel" className="w-full">
-      <button className="w-full h-24 text-2xl p-5 bg-[#f0da69] font-bold text-[#252b61] rounded-lg">
-        View Queue Model
+    </Link>
+  </div>
+  <div className="flex-1 flex">
+    <Link to="/queuemodel" className="w-full h-full">
+      <button className="flex-1 h-28 text-2xl p-3 bg-[#f0da69] font-bold text-[#252b61] rounded-lg">
+        Check OPD Slots Availability  
       </button>
     </Link>
   </div>
+  <div className="flex-1 flex">
+    <Link to="/bedmodel" className="w-full h-full">
+      <button className="flex-1 h-28 text-2xl p-3 bg-[#f0da69] font-bold text-[#252b61] rounded-lg">
+        Check Bed Avaialbility 
+      </button>
+    </Link>
+  </div>
+</div>
+
+
 </div>
 
 
@@ -64,7 +79,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="flex justify-center items-center gap-5 pt-5 p-3">
+      <div className="flex justify-center items-center gap-3 pt-5 p-3">
         <div className="flex flex-col justify-between p-3 w-1/4h-32 shadow-lg bg-[#A3DAC2] rounded-xl">
           <Link to=" ">
             <p className="text-[#252B61] text-2xl font-bold ">
@@ -110,108 +125,64 @@ function Home() {
 
       <br />
       <div>
-        <h1 className="text-[#252B61] text-3xl font-bold pl-[25px]">
-          Our features and services
-        </h1>
-        <h5 className="text-[#5b5b7e] text-xl font-bold pl-[25px]">
-          Explore our services
-        </h5>
+  <h1 className="text-[#252B61] text-3xl font-bold pl-[25px]">
+    Our Features and Services
+  </h1>
+  <h5 className="text-[#5b5b7e] text-xl font-bold pl-[25px]">
+    Explore Our Services
+  </h5>
 
-        <div className=" flex flex-row gap-2 p-[25px] text-[#252b61]">
-          <div className=" relative w-1/3 h- bg-[#A3DAC2] rounded lg p-5">
-            <h3 className="font-bold text-3xl">Find Nearest Hospitals </h3>
-            <br></br>
-            <p className="italic">
-              {" "}
-              1. Real-time Bed Availability : Hospitals can update the number of
-              available beds on the platform, ensuring that patients are
-              directed to facilities with current capacity.{" "}
-            </p>
-            <br></br>
-            <p className="italic">
-              2. OPD Slot Tracking : The dashboard provides updated information
-              on available OPD (Outpatient Department) slots, allowing patients
-              to plan visits without long waiting times.
-            </p>
-            <br></br>
-            <p className="italic">
-              3. Specialty Services Availability : Hospitals can instantly
-              update their availability status, offering patients the most
-              accurate and current data.
-            </p>
-            <br></br>
-            <p className="italic">
-              4. Personalized Care : Patients can check which hospitals have
-              available slots for specific specialties, ensuring they are
-              directed to the right place for their treatment.
-            </p>
-            <br></br>
-            <p className="italic">
-              5. Efficient Resource Utilization : By displaying available
-              resources in real time, the platform helps distribute patient
-              traffic evenly, reducing strain on overburdened hospitals.
-            </p>
-
-            <br />
-          </div>
-          <div className="w-1/3 flex flex-col  gap-2">
-            <div className="w-full h-1/2 bg-[#FFD1DC] rounded lg p-5">
-              <h3 className="font-bold text-3xl">
-                Therapy & Report Generation{" "}
-              </h3>
-              <br></br>
-              <p className="italic">
-                Save valuable time and enhance efficiency by eliminating the
-                hassle of manual report generation. Our platform empowers you to
-                create detailed, data-driven reports in just minutes. With
-                features like automated data collection and real-time
-                integration, you can streamline your reporting process, ensuring
-                that your reports are both fast and accurate.{" "}
-              </p>
-            </div>
-            <div className="w-full h-1/2 bg-[#B3EBF2] rounded lg p-5 sm-p-3">
-              <h3 className="font-bold text-3xl">
-                Talk to our Medical Chatbot{" "}
-              </h3>
-              <br></br>
-              <p className="italic">
-                Our Medical Chatbot offers instant assistance for your health
-                concerns. With its symptom checker, you can describe your
-                symptoms and receive quick insights on possible causes and
-                recommendations for care. Available 24/7, the chatbot ensures
-                round-the-clock support, whether you have general health
-                questions or need guidance during an emergency.{" "}
-              </p>
-            </div>
-          </div>
-          <div className="w-1/3 h- bg-[#F0DA69] rounded lg p-5 ">
-            <h3 className="font-bold text-3xl">ML Predictor </h3>
-            <p className="italic">
-              {" "}
-              <br></br>
-              Our platform features a powerful ML Predictor equipped to analyze
-              various health conditions and predict the likelihood of diseases
-              based on numerous medical data points. It leverages advanced
-              machine learning algorithms to assess patient information,
-              identify patterns, and offer predictive insights into potential
-              diagnoses. This includes predicting conditions like diabetes,
-              heart disease, and more, helping medical professionals take
-              proactive steps toward treatment. Additionally, we integrate an
-              EEG (Electroencephalogram) Analysis ML Model to monitor brain
-              activity. This model helps assess attention levels, detect
-              neurological conditions, and support early diagnosis of disorders
-              like epilepsy, Alzheimer’s, and ADHD. By processing EEG data
-              through machine learning algorithms, our system can provide
-              real-time feedback on brain health, helping in both diagnosis and
-              cognitive performance assessments. Together, these models offer a
-              comprehensive solution for predictive healthcare, allowing for
-              early detection and personalized treatment strategies for a wide
-              range of medical conditions.
-            </p>
-            <br></br>
-          </div>
-        </div>
+  <div className="flex flex-row gap-2 p-[25px] text-[#252b61]">
+    <div className="relative w-1/3 bg-[#FFD1DC] rounded lg p-5">
+      <h3 className="font-bold text-3xl">OPD Slot Tracking</h3>
+      <br></br>
+      <p className="italic">
+        1. Real-time OPD Slot Availability: Our platform provides up-to-date information on available OPD (Outpatient Department) slots, allowing patients to schedule their visits conveniently and avoid long waiting times.
+      </p>
+      <br></br>
+      <p className="italic">
+        2. Specialty Slot Tracking: Find available slots for specific specialties, ensuring that patients are directed to the right department based on their needs.
+      </p>
+      <br></br>
+      <p className="italic">
+        3. Advanced Search Options: Patients can filter available slots based on specialty, time, and hospital location for a more tailored experience.
+      </p>
+      <br></br>
+      <p className="italic">
+        4. Personalized Notifications: Receive alerts and notifications for slot availability, ensuring you stay informed and never miss an appointment.
+      </p>
+      <br></br>
+    </div>
+    <div className="w-1/3 flex flex-col gap-2">
+      <div className="w-full h-1/2 bg-[#A3DAC2] rounded lg p-5">
+        <h3 className="font-bold text-3xl">Real-time Bed Availability</h3>
+        <br></br>
+        <p className="italic">
+          Our platform allows hospitals to update their bed availability in real-time. This ensures that patients are directed to hospitals with the current capacity, helping to manage patient flow effectively and avoid overcrowding.
+        </p>
+        <br></br>
+     
       </div>
+      <div className="w-full h-1/2 bg-[#B3EBF2] rounded lg p-5">
+        <h3 className="font-bold text-3xl">24/7 Medicine </h3>
+        <br></br>
+        <p className="italic">
+          Our platform offers round-the-clock access to medical support through our integrated services. Patients can get instant advice, medication information, and therapy support at any time, ensuring continuous care and guidance.
+        </p>
+      </div>
+    </div>
+    <div className="w-1/3 bg-[#F0DA69] rounded lg p-5">
+      <h3 className="font-bold text-3xl">Therapy & Report Generation</h3>
+      <p className="italic">
+        <br></br>
+        Save valuable time and enhance efficiency by eliminating the hassle of manual report generation. Our platform enables quick and accurate creation of detailed, data-driven reports with automated data collection and real-time integration. Streamline your reporting process and ensure accurate documentation with ease.
+        Our system automatically gathers and consolidates data from various sources, reducing the need for manual entry and minimizing errors. This ensures that your reports are based on comprehensive and up-to-date information.
+      </p>
+      <br></br>
+    </div>
+  </div>
+</div>
+
 
       <br></br>
       <div className="bookings mt-8">

@@ -4,8 +4,8 @@ import React from 'react';
 
 const Button = ({ children, variant = 'default', className, ...props }) => {
   const variantClasses = {
-    default: 'bg-gray-500 text-white hover:bg-gray-600',
-    destructive: 'bg-red-500 text-white hover:bg-red-600',
+    default: 'bg-[#A3DAC2] text-[#252b61] hover:bg-[#A3DAC8]',
+    destructive: 'bg-red-500 text-[#252b61] hover:bg-[#A3DAC8]',
     outline: 'border border-gray-500 text-gray-500 hover:bg-gray-100',
   };
 

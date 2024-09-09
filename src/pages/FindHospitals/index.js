@@ -1,25 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import {  Clock, UserCheck, Loader2, RefreshCcw, MapPin } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
-import { Alert, AlertDescription, AlertTitle } from '../../components/ui/alert';
-import { Button } from '../../components/ui/button';
+import React, { useState, useEffect } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import { Clock, UserCheck, Loader2, RefreshCcw, MapPin } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../components/ui/card";
+import { Alert, AlertDescription, AlertTitle } from "../../components/ui/alert";
+import { Button } from "../../components/ui/button";
 
-import { Tabs, TabsContent } from '../../components/ui/tabs';
+import { Tabs, TabsContent } from "../../components/ui/tabs";
 
 const hospitals = [
-  { id: 1, name: 'AIIMS Delhi', location: 'Ansari Nagar' },
-  { id: 2, name: 'Safdarjung Hospital', location: 'Ansari Nagar West' },
-  { id: 3, name: 'Lok Nayak Hospital', location: 'Delhi Gate' },
-  { id: 4, name: 'Sir Ganga Ram Hospital', location: 'Rajinder Nagar' },
-  { id: 5, name: 'Max Super Speciality Hospital', location: 'Saket' },
-  { id: 6, name: 'Apollo Hospital', location: 'Sarita Vihar' },
+  { id: 1, name: "AIIMS Delhi", location: "Ansari Nagar" },
+  { id: 2, name: "Safdarjung Hospital", location: "Ansari Nagar West" },
+  { id: 3, name: "Lok Nayak Hospital", location: "Delhi Gate" },
+  { id: 4, name: "Sir Ganga Ram Hospital", location: "Rajinder Nagar" },
+  { id: 5, name: "Max Super Speciality Hospital", location: "Saket" },
+  { id: 6, name: "Apollo Hospital", location: "Sarita Vihar" },
 ];
 
-const specializations = ['General', 'Cardiology', 'Orthopedics', 'Neurology', 'Pediatrics'];
+const specializations = [
+  "General",
+  "Cardiology",
+  "Orthopedics",
+  "Neurology",
+  "Pediatrics",
+];
 
 const generateQueueData = () => {
-  return specializations.map(spec => ({
+  return specializations.map((spec) => ({
     name: spec,
     regularQueue: Math.floor(Math.random() * 20),
     emergencyQueue: Math.floor(Math.random() * 5),
@@ -31,7 +50,7 @@ const generateQueueData = () => {
 const OPDSQueueModel = () => {
   const [selectedHospital, setSelectedHospital] = useState(hospitals[0]);
   const [queueData, setQueueData] = useState(generateQueueData());
-  const [selectedSpecialization, setSelectedSpecialization] = useState('');
+  const [selectedSpecialization, setSelectedSpecialization] = useState("");
   const [alert, setAlert] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -50,41 +69,56 @@ const OPDSQueueModel = () => {
   const handleEmergency = () => {
     if (selectedSpecialization) {
       setAlert({
-        title: 'Emergency Added',
+        title: "Emergency Added",
         description: `Emergency patient added to ${selectedSpecialization} queue at ${selectedHospital.name}.`,
       });
       setTimeout(() => setAlert(null), 3000);
-      
-      setQueueData(prevData => 
-        prevData.map(spec => 
-          spec.name === selectedSpecialization 
-            ? {...spec, emergencyQueue: spec.emergencyQueue + 1}
+
+      setQueueData((prevData) =>
+        prevData.map((spec) =>
+          spec.name === selectedSpecialization
+            ? { ...spec, emergencyQueue: spec.emergencyQueue + 1 }
             : spec
         )
       );
     }
   };
 
-  const totalPatients = queueData.reduce((sum, spec) => sum + spec.regularQueue + spec.emergencyQueue, 0);
-  const totalEmergencies = queueData.reduce((sum, spec) => sum + spec.emergencyQueue, 0);
-  const avgWaitTime = Math.floor(queueData.reduce((sum, spec) => sum + spec.avgWaitTime, 0) / queueData.length);
+  const totalPatients = queueData.reduce(
+    (sum, spec) => sum + spec.regularQueue + spec.emergencyQueue,
+    0
+  );
+  const totalEmergencies = queueData.reduce(
+    (sum, spec) => sum + spec.emergencyQueue,
+    0
+  );
+  const avgWaitTime = Math.floor(
+    queueData.reduce((sum, spec) => sum + spec.avgWaitTime, 0) /
+      queueData.length
+  );
 
   return (
     <div className="p-6 max-w-7xl mx-auto bg-gray-100 min-h-screen">
-      <h1 className="text-4xl font-extrabold mb-8 text-center text-[#252b61]">OPDS Queuing Model - Delhi Hospitals</h1>
+      <h1 className="text-4xl font-extrabold mb-8 text-center text-[#252b61]">
+        Delhi Hospitals: OPD Slot Availability Overview
+      </h1>
 
       <Card className="bg-white shadow-lg mb-6">
-        <CardHeader className="text-[#252b61]"  >
-          <CardTitle >Select Hospital</CardTitle>
+        <CardHeader className="text-[#252b61]">
+          <CardTitle>Select Hospital</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="relative">
             <select
               value={selectedHospital.id}
-              onChange={e => setSelectedHospital(hospitals.find(h => h.id === parseInt(e.target.value)))}
+              onChange={(e) =>
+                setSelectedHospital(
+                  hospitals.find((h) => h.id === parseInt(e.target.value))
+                )
+              }
               className="p-2 border-[#252b61] rounded-lg w-full"
             >
-              {hospitals.map(hospital => (
+              {hospitals.map((hospital) => (
                 <option key={hospital.id} value={hospital.id}>
                   {hospital.name}
                 </option>
@@ -103,7 +137,9 @@ const OPDSQueueModel = () => {
             <CardTitle>Total Patients</CardTitle>
           </CardHeader>
           <CardContent className="pt-6">
-            <div className="text-5xl font-bold text-center">{totalPatients}</div>
+            <div className="text-5xl font-bold text-center">
+              {totalPatients}
+            </div>
           </CardContent>
         </Card>
         <Card className="bg-white shadow-lg">
@@ -111,7 +147,9 @@ const OPDSQueueModel = () => {
             <CardTitle>Emergency Cases</CardTitle>
           </CardHeader>
           <CardContent className="pt-6">
-            <div className="text-5xl font-bold text-center text-red-600">{totalEmergencies}</div>
+            <div className="text-5xl font-bold text-center text-red-600">
+              {totalEmergencies}
+            </div>
           </CardContent>
         </Card>
         <Card className="bg-white shadow-lg">
@@ -119,13 +157,14 @@ const OPDSQueueModel = () => {
             <CardTitle>Avg. Wait Time</CardTitle>
           </CardHeader>
           <CardContent className="pt-6">
-            <div className="text-5xl font-bold text-center">{avgWaitTime} min</div>
+            <div className="text-5xl font-bold text-center">
+              {avgWaitTime} min
+            </div>
           </CardContent>
         </Card>
       </div>
 
       <Tabs defaultValue="queue" className="mb-8">
-       
         <TabsContent value="queue" className="mt-4">
           <Card className="bg-white shadow-lg">
             <CardHeader className="text-[#252b61]">
@@ -138,8 +177,16 @@ const OPDSQueueModel = () => {
                   <YAxis />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="regularQueue" name="Regular Queue" fill="#3498db" />
-                  <Bar dataKey="emergencyQueue" name="Emergency Queue" fill="#e74c3c" />
+                  <Bar
+                    dataKey="regularQueue"
+                    name="Regular Queue"
+                    fill="#3498db"
+                  />
+                  <Bar
+                    dataKey="emergencyQueue"
+                    name="Emergency Queue"
+                    fill="#e74c3c"
+                  />
                 </BarChart>
               </ResponsiveContainer>
             </CardContent>
@@ -148,11 +195,13 @@ const OPDSQueueModel = () => {
         <TabsContent value="details" className="mt-4">
           <Card className="bg-white shadow-lg">
             <CardHeader>
-              <CardTitle>Department Details at {selectedHospital.name}</CardTitle>
+              <CardTitle>
+                Department Details at {selectedHospital.name}
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {queueData.map(spec => (
+                {queueData.map((spec) => (
                   <Card key={spec.name} className="bg-gray-50 shadow-md">
                     <CardHeader className="bg-gray-200">
                       <CardTitle>{spec.name}</CardTitle>
@@ -160,7 +209,7 @@ const OPDSQueueModel = () => {
                     <CardContent>
                       <p className="flex items-center text-gray-800">
                         <UserCheck className="mr-2 text-gray-600" />
-                        Status: {spec.doctorAvailable ? 'Available' : 'Busy'}
+                        Status: {spec.doctorAvailable ? "Available" : "Busy"}
                       </p>
                       <p className="flex items-center text-gray-800 mt-2">
                         <Clock className="mr-2 text-gray-600" />
@@ -176,37 +225,40 @@ const OPDSQueueModel = () => {
       </Tabs>
 
       <Card className="bg-white shadow-lg mb-8">
-  <CardHeader className="text-[#252b61]">
-    <CardTitle>Add Emergency at {selectedHospital.name}</CardTitle>
-  </CardHeader>
-  <CardContent className="flex items-center space-x-4">
-    <div className="relative w-[200px]">
-      <select 
-        onChange={e => setSelectedSpecialization(e.target.value)} 
-        value={selectedSpecialization}
-        className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-      >
-        <option value="" disabled>Select Specialization</option>
-        {specializations.map(spec => (
-          <option key={spec} value={spec}>
-            {spec}
-          </option>
-        ))}
-      </select>
-    </div>
-    <Button 
-      onClick={handleEmergency}
-      className="ml-auto bg-blue-500 text-white hover:bg-blue-600 disabled:bg-gray-400"
-      disabled={!selectedSpecialization || isLoading}
-    >
-      {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <RefreshCcw className="w-5 h-5" />}
-      Add Emergency
-    </Button>
-  </CardContent>
-</Card>
-
-
-
+        <CardHeader className="text-[#252b61]">
+          <CardTitle>Add Emergency at {selectedHospital.name}</CardTitle>
+        </CardHeader>
+        <CardContent className="flex items-center space-x-4">
+          <div className="relative w-[200px]">
+            <select
+              onChange={(e) => setSelectedSpecialization(e.target.value)}
+              value={selectedSpecialization}
+              className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="" disabled>
+                Select Specialization
+              </option>
+              {specializations.map((spec) => (
+                <option key={spec} value={spec}>
+                  {spec}
+                </option>
+              ))}
+            </select>
+          </div>
+          <Button
+            onClick={handleEmergency}
+            className="ml-auto bg-blue-500 text-white hover:bg-blue-600 disabled:bg-gray-400"
+            disabled={!selectedSpecialization || isLoading}
+          >
+            {isLoading ? (
+              <Loader2 className="w-5 h-5 animate-spin" />
+            ) : (
+              <RefreshCcw className="w-5 h-5" />
+            )}
+            Add Emergency
+          </Button>
+        </CardContent>
+      </Card>
 
       {alert && (
         <Alert variant="success" className="mt-6">
